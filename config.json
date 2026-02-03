@@ -1,0 +1,9 @@
+{
+  "preferred_topics": [
+    "rag",
+    "llm",
+    "transformers"
+  ],
+  "topic_boost_multiplier": 1.5,
+  "cache_days": 7
+}
