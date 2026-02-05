@@ -1,0 +1,50 @@
+name: Daily AI Digest
+
+# This workflow is disabled by default. To enable it:
+# 1. Uncomment the schedule section below
+# 2. Optionally configure GitHub token for higher API rate limits
+
+on:
+  # Uncomment to run automatically every day at 9 AM UTC
+  # schedule:
+  #   - cron: '0 9 * * *'
+
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Topic to search for'
+        required: false
+        default: 'ai'
+      limit:
+        description: 'Number of repositories'
+        required: false
+        default: '10'
+
+jobs:
+  generate-digest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Generate digest
+      run: |
+        python run.py --topic "${{ github.event.inputs.topic || 'ai' }}" --limit ${{ github.event.inputs.limit || 10 }}
+
+    - name: Upload report as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: daily-digest
+        path: daily/*.md
+        retention-days: 30

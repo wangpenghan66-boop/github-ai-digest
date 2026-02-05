@@ -1,6 +1,19 @@
 # GitHub AI Digest Pipeline
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![GitHub Stars](https://img.shields.io/github/stars/wangpenghan66-boop/github-ai-digest.svg)](https://github.com/wangpenghan66-boop/github-ai-digest/stargazers)
+
 A minimal Python tool to fetch, score, and generate daily digests of trending AI-related repositories from GitHub.
+
+## ✨ Features at a Glance
+
+- 🔍 **Smart Search**: Fetch AI repositories using GitHub Search API
+- ⭐ **Intelligent Scoring**: Rank repos based on stars, forks, recency, and keyword relevance
+- 🔄 **Smart Caching**: Avoid showing duplicate repos across daily reports
+- 🎯 **Personalized**: Boost repos matching your favorite topics
+- 📝 **Clean Output**: Generate structured markdown reports with actionable insights
+- ⚡ **Simple CLI**: Easy-to-use command-line interface
 
 ## Quick Start (Local)
 
@@ -169,13 +182,14 @@ Formula: `final_score = base_score × preference_boost`
 - Rate limit: ~10 requests per minute
 - Maximum 100 repos per search
 
-## Example
+## 📊 Example Output
 
+Run the tool:
 ```bash
 python run.py --topic "transformer" --limit 5
 ```
 
-Output:
+Console output:
 ```
 Fetching 5 repositories for topic: transformer
 Preferred topics: rag, llm, transformers
@@ -183,6 +197,26 @@ Found 10 repositories
 Filtered 3 previously seen repos (within 7 days)
 Report generated: daily/2024-02-03.md
 Included 5 repositories
+```
+
+Generated report (`daily/2024-02-03.md`):
+
+```markdown
+# GitHub AI Digest - 2024-02-03
+
+## [langflow](https://github.com/langflow-ai/langflow)
+
+**Why it matters:** A extremely popular Python project with 144,522 stars,
+indicating strong community adoption and active development.
+
+**Key Points:**
+- Langflow is a powerful tool for building and deploying AI-powered agents and workflows.
+- Community: 144,522 stars, 8,400 forks
+- Built with Python, last updated February 2026
+
+**Practice Task:** Explore the documentation and try running a basic example from the README
+
+**Links:** [GitHub](https://github.com/langflow-ai/langflow) | Stars: 144,522 | Forks: 8,400 | Language: Python
 ```
 
 ## Local Verification Checklist
